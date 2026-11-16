@@ -12,6 +12,16 @@ def get_db():
     return g.db
 
 
+def insert_contact(db, name, favorite, methods):
+    cursor = db.execute(
+        "INSERT INTO contact (name, favorite) VALUES (?, ?)", (name, favorite)
+    )
+    db.executemany(
+        "INSERT INTO contact_method (contact_id, kind, value) VALUES (?, ?, ?)",
+        [(cursor.lastrowid, kind, value) for kind, value in methods if value],
+    )
+
+
 def close_db(error=None):
     db = g.pop("db", None)
     if db is not None:

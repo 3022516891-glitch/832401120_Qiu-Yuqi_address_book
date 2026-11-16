@@ -7,7 +7,7 @@ main { max-width: 720px; margin: 3rem auto; padding: 0 1rem; }
 header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 h2 { margin: 0; font-size: 1.15rem; overflow-wrap: anywhere; }
 a { color: #096456; }
-nav { display: flex; gap: 1rem; margin: 0 0 1.5rem; }
+nav { display: flex; flex-wrap: wrap; gap: 1rem; margin: 0 0 1.5rem; }
 [aria-current="page"] { font-weight: bold; text-underline-offset: .3rem; }
 article, fieldset {
   background: white;

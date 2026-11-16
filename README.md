@@ -20,4 +20,13 @@ python -m venv .venv
 | `storage.py` / `schema.sql` | 数据库连接、联系人与联系方式的一对多关系 |
 | `templates/` / `static/` | 页面模板和样式 |
 
-Excel 导入导出是下一阶段的功能。按照题目要求，工作表每行放一个联系人，每类信息使用单独的列，同类多条联系方式需要能够完整导出并重新导入。
+## Excel import and export
+
+Use **Export All to Excel** to download every contact, including favorites. Each contact
+occupies one row. Repeated methods use additional columns such as `Phone 2` and
+`Phone 3`. Phone numbers are exported as text.
+
+Use **Import Excel** to download a blank template or upload an exported or compatible
+`.xlsx` file. `Name` is required. `Favorite` accepts Yes, No, or a blank cell.
+Import adds new contacts, including when a name already exists. If a row fails
+validation, the workbook is rejected before any contact is added.

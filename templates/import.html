@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Import Excel · Address Book{% endblock %}
+{% block content %}
+<a href="{{ url_for('index') }}">Back to Address Book</a>
+<h1>Import Excel</h1>
+{% if error %}<p role="alert">{{ error }}</p>{% endif %}
+{% if imported %}
+<p role="status">Imported {{ imported }} {{ "contact" if imported == 1 else "contacts" }}.</p>
+{% else %}
+<p>Use one row per contact. Format phone numbers as text to preserve leading zeros.</p>
+<p><a href="{{ url_for('export_excel', template=1) }}">Download Excel template</a></p>
+<form method="post" enctype="multipart/form-data">
+  <fieldset>
+    <legend>Choose an .xlsx file</legend>
+    <input type="file" aria-label="Excel workbook" name="workbook" accept=".xlsx" required>
+  </fieldset>
+  <button class="button" type="submit">Import Contacts</button>
+</form>
+{% endif %}
+{% endblock %}

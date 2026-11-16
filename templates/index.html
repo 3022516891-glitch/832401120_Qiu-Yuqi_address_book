@@ -7,6 +7,8 @@
 <nav aria-label="Filter contacts">
   <a href="{{ url_for('index') }}" {% if not favorites_only %}aria-current="page"{% endif %}>All Contacts</a>
   <a href="{{ url_for('index', favorites=1) }}" {% if favorites_only %}aria-current="page"{% endif %}>Favorites</a>
+  <a href="{{ url_for('import_excel') }}">Import Excel</a>
+  <a href="{{ url_for('export_excel') }}">Export All to Excel</a>
 </nav>
 {% for contact in contacts %}
 <article>
