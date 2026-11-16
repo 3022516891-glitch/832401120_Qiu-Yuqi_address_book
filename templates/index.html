@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<header>
+  <h1>Address Book</h1>
+  <a class="button" href="{{ url_for('new_contact') }}">Add Contact</a>
+</header>
+<nav aria-label="Filter contacts">
+  <a href="{{ url_for('index') }}" {% if not favorites_only %}aria-current="page"{% endif %}>All Contacts</a>
+  <a href="{{ url_for('index', favorites=1) }}" {% if favorites_only %}aria-current="page"{% endif %}>Favorites</a>
+</nav>
+{% for contact in contacts %}
+<article>
+  <header>
+    <h2>{{ contact.name }}</h2>
+    <form method="post" action="{{ url_for('favorite', contact_id=contact.id) }}">
+      <input type="hidden" name="favorites" value="{{ 1 if favorites_only else 0 }}">
+      <button type="submit">{{ "Remove from favorites" if contact.favorite else "Add to favorites" }}</button>
+    </form>
+  </header>
+  <dl>
+    {% for kind, value in contact.methods %}
+    <div><dt>{{ kind }}</dt><dd>{{ value }}</dd></div>
+    {% endfor %}
+  </dl>
+</article>
+{% else %}
+<p>{{ "No favorite contacts yet." if favorites_only else "No contacts yet." }}</p>
+{% endfor %}
+{% endblock %}

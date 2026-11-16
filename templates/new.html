@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Add Contact · Address Book{% endblock %}
+{% macro method_fields(kind, value) %}
+<div class="method">
+  <label>Type
+    <select name="kind">
+      {% for option, label in method_labels.items() %}
+      <option value="{{ option }}" {% if option == kind %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Contact detail<input name="value" value="{{ value }}" maxlength="300"></label>
+</div>
+{% endmacro %}
+{% block content %}
+<a href="{{ url_for('index') }}">Back to Address Book</a>
+<h1>Add Contact</h1>
+{% if error %}<p role="alert">{{ error }}</p>{% endif %}
+<form method="post">
+  <label>Name<input name="name" value="{{ name }}" required maxlength="100"></label>
+  <fieldset>
+    <legend>Contact methods (optional)</legend>
+    <div id="methods">
+      {% for kind, value in methods %}{{ method_fields(kind, value) }}{% endfor %}
+    </div>
+    <button id="add-method" type="button" hidden>Add another method</button>
+  </fieldset>
+  <button class="button" type="submit">Save Contact</button>
+</form>
+<template id="method-template">{{ method_fields(method_labels|first, "") }}</template>
+<script>
+  const addMethod = document.querySelector("#add-method");
+  addMethod.hidden = false;
+  addMethod.addEventListener("click", () => {
+    const row = document.querySelector("#method-template").content.cloneNode(true);
+    const value = row.querySelector("input");
+    document.querySelector("#methods").append(row);
+    value.focus();
+  });
+</script>
+{% endblock %}
