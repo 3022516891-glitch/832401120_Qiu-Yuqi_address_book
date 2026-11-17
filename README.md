@@ -30,3 +30,12 @@ Use **Import Excel** to download a blank template or upload an exported or compa
 `.xlsx` file. `Name` is required. `Favorite` accepts Yes, No, or a blank cell.
 Import adds new contacts, including when a name already exists. If a row fails
 validation, the workbook is rejected before any contact is added.
+
+## 功能演示
+
+1. 在首页点击 **Add Contact**，填写示例姓名 Alex Chen。用 **Add another method** 增加一条电话和一条邮箱，保存后核对联系人卡片。
+2. 点击 **Add to favorites**，再切换到 **Favorites**，确认该联系人出现在收藏列表。
+3. 点击 **Export All to Excel**，打开下载的 `contacts.xlsx`，确认同一联系人的两个号码分别位于 `Phone` 和 `Phone 2` 列。
+4. 打开 **Import Excel** 下载空白模板。另填一位示例联系人并上传，确认成功提示，并在 **All Contacts** 核对新增记录。
+
+开发约定见 [Coding Standards](CODING_STANDARDS.md)。
